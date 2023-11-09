@@ -3,7 +3,8 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 // import './App.css'
 import Home from "./Home"
-import TableMenu from "./TableMenu"
+// import TableMenu from "./TableMenu"
+import TableCart from './TableCart'
 
 function App() {
 
@@ -11,7 +12,7 @@ function App() {
   return (
     <>
       {/* <Home /> */}
-      <TableMenu/>
+      <TableCart/>
     </>
   )
 }
