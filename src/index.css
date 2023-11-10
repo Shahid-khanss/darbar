@@ -80,10 +80,16 @@ body{
   /* width: 500px; */
 }
 
+.item-row{
+  display: block;
+  border: 1px solid violet;
+}
+
 .sno{
   display: inline-block;
   border: 1px solid black;
   width: 10px;
+  margin: 5px;
 }
 
 .itemno{
