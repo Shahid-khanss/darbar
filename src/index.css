@@ -43,6 +43,7 @@ body{
   border-radius: 5px;
   /* display: flex; */
   display: inline-block;
+  margin: 10px;
 
 }
 
@@ -71,6 +72,10 @@ body{
 
 .delete{
   display: inline;
+  border: 1px solid black;
+  padding: 2px;
+  margin: 5px;
+  
 }
 
 .table-cart{
@@ -90,6 +95,7 @@ body{
   border: 1px solid black;
   width: 10px;
   margin: 5px;
+  padding: 2px;
 }
 
 .itemno{
