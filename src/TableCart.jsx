@@ -3,20 +3,31 @@ import TableMenu from "./TableMenu";
 
 const TableCart = () => {
     
-const [tCart, setTCart] = useState(0)
-  
-function handleClick(e){
+const [tCart, setTCart] = useState([<TableMenu />])
+console.log(tCart)
+
+function handleAddItems(e){
     e.preventDefault()
     setTCart(prev=>{
-        prev+1
+        return [...prev,<TableMenu />]
     })
 }
 
+// function handleDeleteItems(){
+
+// }
+
     return ( 
         <div className="table-cart">
-        
-        <TableMenu />
-        <a onClick={handleClick} href="" className="add-items">Add Items</a>
+            {tCart.map((item,index)=>{
+                return ( <>
+                    <div className="sno">{index+1}</div>
+                    <div className="itemno">{item}</div>
+                    <div className="delete">delete</div>
+                    </>             
+                )
+            })}
+        <a onClick={handleAddItems} href="" className="add-items">Add Items</a>
         </div>
      );
 }

@@ -16,6 +16,10 @@ body{
 
 .parent{
   position: relative;
+  border: 1px solid blue;
+  /* display: flex;
+  justify-content:space-around; */
+  /* display: inline; */
 }
 
 
@@ -32,29 +36,29 @@ body{
 
 .items{
   background-color: white;
-  /* border: 2px solid black; */
-  box-shadow: 2px 2px 5px 2px gray;
+  border: 2px solid black;
+  /* box-shadow: 2px 2px 5px 2px gray; */
   padding: 10px;
- 
-  border-radius: 5px;
-
-}
-
-.items>.dish{
-  height: 25px;
   width: 150px;
+  border-radius: 5px;
+  /* display: flex; */
+  display: inline-block;
+
 }
 
-.items>.dish,.rate{
+.dish{
+  width: 50%;
+  height: 20px;
+  word-wrap: break-word;
+  border: 1px solid red;
   display: inline;
-  margin-inline: 10px;
 }
 
 .rate{
-  /* border: 1px solid red; */
-  width: 50px;
-  height: 20px;
-  color: red;
+  width: 10%;
+  border: 2px solid red;
+  display: inline;
+  margin-left: 20px;
 }
 
 .add-items{
@@ -63,5 +67,26 @@ body{
   font-size: 1.2em;
   margin: 2px;
   text-decoration: none;
+}
+
+.delete{
+  display: inline;
+}
+
+.table-cart{
+  border: 2px solid red;
+  /* display: flex; */
+  /* display: block; */
+  /* width: 500px; */
+}
+
+.sno{
+  display: inline-block;
+  border: 1px solid black;
+  width: 10px;
+}
+
+.itemno{
+  display: inline-block;
 }
 
