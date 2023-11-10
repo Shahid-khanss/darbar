@@ -4,7 +4,7 @@ import TableMenu from "./TableMenu";
 const TableCart = () => {
     
 const [tCart, setTCart] = useState([<TableMenu />])
-console.log(tCart)
+// console.log(tCart)
 
 function handleAddItems(e){
     e.preventDefault()
@@ -13,17 +13,22 @@ function handleAddItems(e){
     })
 }
 
-// function handleDeleteItems(){
-
-// }
+function handleDeleteItems(e,index){
+    e.preventDefault()
+    setTCart(prev=>{
+        prev.splice(index,1)
+        console.log(index)
+        return [...prev]
+    })
+}
 
     return ( 
         <div className="table-cart">
             {tCart.map((item,index)=>{
-                return ( <div className="item-row">
+                return ( <div key={index} className="item-row">
                     <div className="sno">{index+1}</div>
                     <div className="itemno">{item}</div>
-                    <div className="delete">delete</div>
+                    <div  onClick={(e)=>handleDeleteItems(e,index)} className="delete">delete</div>
                     </div>             
                 )
             })}

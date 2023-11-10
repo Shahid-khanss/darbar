@@ -1,7 +1,7 @@
 import { useState } from "react"
 import menuList from "./menuList"
 
-console.log(menuList)
+// console.log(menuList)
 
 const TableMenu = () => {
     
@@ -9,15 +9,15 @@ const [formData, setFormData] = useState({dish : "", rate : ""})
 const [sortedList, setSortedList] = useState(null)
 // const [tableCart, setTableCart] = useState([])
 
-console.log(formData)
-console.log(sortedList)
+// console.log(formData)
+// console.log(sortedList)
 // console.log(tableCart)
 
 function handleChange(e){
-    searchList()
     e.preventDefault()
+    searchList()
     setFormData(prev=>{
-        return e.target.value
+        return {...prev,dish : e.target.value}
     })
 
 }
@@ -27,7 +27,7 @@ function searchList(){
   if(formData){
       
       for(let i=0;i<menuList.length;i++){
-          if(menuList[i].dish.indexOf(formData)>-1){
+          if(menuList[i].dish.indexOf(formData.dish)>-1){
              tempList.push({dish : menuList[i].dish, rate : menuList[i].rate}) 
   
           }else{
@@ -54,9 +54,9 @@ function handleClick(e,item){
             <div className="rate">{formData.rate}</div>
             {sortedList ? (
             <div className="sorted-list">
-            {sortedList.map(item=>{
+            {sortedList.map((item,index)=>{
 
-                return <div onClick={(e)=>handleClick(e,item)}>{item.dish}</div>
+                return <div key={index} onClick={(e)=>handleClick(e,item)}>{item.dish}</div>
             })}
             </div>) : null}
            </div>
