@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 // import TableMenu from "./TableMenu";
 import { useSelector, useDispatch } from "react-redux"
-import { writeItem, deleteItem } from "./features/darbarSlice";
+import { writeItem, deleteItem,total } from "./features/darbarSlice";
 import TableMenu from "./TableMenu";
 
 function TableCart(props) {
@@ -15,7 +15,7 @@ const dispatch = useDispatch()
 function handleDelete(e,tableno,index){
     e.preventDefault()
     dispatch(deleteItem({tableno,index}))
-
+    dispatch(total({tableno}))                  //update total value of table after deleting
 }
 
     return ( 
