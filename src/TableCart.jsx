@@ -33,7 +33,9 @@ function handleDelete(e,tableno,index){
                         <div className="dish-row">{dish.dish}</div>
                         <div className="rate-row">{dish.rate}</div>
                         {/* <div className="edit-row">Edit</div> */}
-                        <div onClick={(e)=>{handleDelete(e,table.tableno,index)}} className="delete-row">Delete</div>
+                        <div onClick={(e)=>{handleDelete(e,table.tableno,index)}} className="delete-row"><span className="material-symbols-outlined">
+delete_forever
+</span></div>
                        
                         </div>
                     )

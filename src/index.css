@@ -6,6 +6,18 @@ body{
 
 }
 
+
+.material-symbols-outlined {
+  
+  font-size: 1.5em;
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+
 img{
   width: 100%;
   background-color: black;
@@ -122,7 +134,7 @@ img{
 
 .delete-row{
   display: inline-block;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   padding: 2px;
   margin-left: 10px;
 }
