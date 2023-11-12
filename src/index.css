@@ -14,37 +14,108 @@ body{
   justify-content:space-between;
 }
 
-.parent{
+/* 
+  Outer layout of tables and main window
+*/
+
+.darbar{
+  border: 2px solid red;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* display: block; */
+  /* width: 500px; */
+  height: 80vw;
+}
+
+.table{
+  border: 1px solid rgb(38, 0, 255);
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  border-radius: 5px;
+  
+}
+
+.table-cart{
+  border: 1px solid green;
+  padding: 5px;
+}
+
+
+/* 
+  Row items in a cart inside table
+*/
+
+.home-row{
+  border: 1px solid black;
+  width: 100px;
+  height: 50px;
+  text-align: center;
+  margin-inline: auto;
+  margin-block: 20px;
+  font-size: 2em;
+}
+
+
+.parent-row{
   position: relative;
   border: 1px solid blue;
-  /* display: flex;
-  justify-content:space-around; */
+  display: flex;
+  margin-block: 5px;
+  background-color: rgb(0, 255, 191);
+  /* justify-content:space-around; */
   /* display: inline; */
 }
 
-
-.sorted-list{
-  /* border: 2px solid red; */
-  position: absolute;
-  background-color: white;
-  /* bottom: 0px; */
-  left: 0px;
-  box-shadow: 2px 2px 5px 2px gray;
-  padding: 5px;
-  font-size: 1.5em;
+.sno-row{
+  /* width: 10%; */
+  border: 1px solid red;
+  display: inline;
+  margin-inline: 5px;
+  padding: 1px;
 }
 
-.items{
-  background-color: white;
-  border: 2px solid black;
-  /* box-shadow: 2px 2px 5px 2px gray; */
-  padding: 10px;
-  width: 150px;
-  border-radius: 5px;
-  /* display: flex; */
-  display: inline-block;
-  margin: 10px;
+.dish-row{
+  width: 50%;
+  height: 20px;
+  word-wrap: break-word;
+  border: 1px solid red;
+  display: inline;
+}
 
+.rate-row{
+  width: 10%;
+  border: 2px solid red;
+  display: inline;
+  margin-inline: 20px;
+}
+
+.edit-row{
+  display: inline-block;
+  border: 1px solid black;
+  padding: 2px;
+  margin-left: 10px;
+}
+
+.delete-row{
+  display: inline-block;
+  border: 1px solid black;
+  padding: 2px;
+  margin-left: 10px;
+}
+
+
+/* 
+form-item css
+*/
+
+.parent{
+  position: relative;
+  border: 1px solid blue;
+  /* display: flex; */
+  /* justify-content:space-around; */
+  /* display: inline; */
 }
 
 .dish{
@@ -59,46 +130,63 @@ body{
   width: 10%;
   border: 2px solid red;
   display: inline;
-  margin-left: 20px;
+  margin-inline: 20px;
 }
 
-.add-items{
+/* 
+  Menu sored list css
+*/
+.sorted-list{
+  /* border: 2px solid red; */
+  position: absolute;
+  background-color: white;
+  /* bottom: 0px; */
+  left: 0px;
+  box-shadow: 2px 2px 5px 2px gray;
+  padding: 5px;
+  font-size: 1.5em;
+}
+
+
+/* 
+  Dishes in a particular table css
+*/
+
+.items{
+  background-color: white;
+  border: 2px solid black;
+  /* box-shadow: 2px 2px 5px 2px gray; */
+  padding: 10px;
+  width: 150px;
+  border-radius: 5px;
+  /* display: flex; */
+  display: inline-block;
+  margin: 10px;
+
+}
+
+
+
+/* .add-items{
   border: 1px solid black;
   padding: 2px;
   font-size: 1.2em;
   margin: 2px;
   text-decoration: none;
-}
+} */
 
-.delete{
+/* .delete{
   display: inline;
   border: 1px solid black;
   padding: 2px;
   margin: 5px;
   
-}
+} */
 
-.table-cart{
-  border: 2px solid red;
-  /* display: flex; */
-  /* display: block; */
-  /* width: 500px; */
-}
-
-.item-row{
-  display: block;
-  border: 1px solid violet;
-}
-
-.sno{
+.enter{
   display: inline-block;
   border: 1px solid black;
-  width: 10px;
-  margin: 5px;
   padding: 2px;
-}
-
-.itemno{
-  display: inline-block;
+  margin-left: 10px;
 }
 

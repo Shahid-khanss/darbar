@@ -4,7 +4,8 @@ import viteLogo from '/vite.svg'
 // import './App.css'
 import Home from "./Home"
 // import TableMenu from "./TableMenu"
-import TableCart from './TableCart'
+// import Darbar from './TableCart'
+import Darbar from './Darbar'
 
 function App() {
 
@@ -12,7 +13,7 @@ function App() {
   return (
     <>
       {/* <Home /> */}
-      <TableCart/>
+      <Darbar/>
     </>
   )
 }

@@ -1,40 +1,50 @@
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
+// import TableMenu from "./TableMenu";
+import { useSelector, useDispatch } from "react-redux"
+import { writeItem, deleteItem } from "./features/darbarSlice";
 import TableMenu from "./TableMenu";
 
-const TableCart = () => {
+function TableCart(props) {
     
-const [tCart, setTCart] = useState([<TableMenu />])
-// console.log(tCart)
+    const state = useSelector(state=>state.darbarReducer)
+    console.log(state)
+    
+const dispatch = useDispatch()
 
-function handleAddItems(e){
+function handleDelete(e,tableno,index){
     e.preventDefault()
-    setTCart(prev=>{
-        return [...prev,<TableMenu />]
-    })
-}
+    dispatch(deleteItem({tableno,index}))
 
-function handleDeleteItems(e,index){
-    e.preventDefault()
-    setTCart(prev=>{
-        prev.splice(index,1)
-        console.log(index)
-        return [...prev]
-    })
 }
 
     return ( 
         <div className="table-cart">
-            {tCart.map((item,index)=>{
-                return ( <div key={index} className="item-row">
-                    <div className="sno">{index+1}</div>
-                    <div className="itemno">{item}</div>
-                    <div  onClick={(e)=>handleDeleteItems(e,index)} className="delete">delete</div>
-                    </div>             
-                )
-            })}
-        <a onClick={handleAddItems} href="" className="add-items">Add Items</a>
+            
+           
+            
+            {state.map(table=>{
+            if(table.tableno==props.clicked){
+                return table.items.map((dish,index)=>{
+                    return(
+                        <div className="parent-row">
+                        {/* <div className="sno">{dish.dish}</div> */}
+                        <div className="sno-row">{index+1}</div>
+                        <div className="dish-row">{dish.dish}</div>
+                        <div className="rate-row">{dish.rate}</div>
+                        {/* <div className="edit-row">Edit</div> */}
+                        <div onClick={(e)=>{handleDelete(e,table.tableno,index)}} className="delete-row">Delete</div>
+                        </div>
+                    )
+                })
+            }
+        })}
+         <TableMenu
+            tableno = {props.clicked}
+
+            />
         </div>
      );
 }
- 
+
 export default TableCart;

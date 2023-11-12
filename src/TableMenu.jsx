@@ -1,15 +1,19 @@
 import { useState } from "react"
 import menuList from "./menuList"
+import { useSelector, useDispatch } from "react-redux"
+import { writeItem } from "./features/darbarSlice"
 
-// console.log(menuList)
 
-const TableMenu = () => {
+const TableMenu = (props) => {
     
-const [formData, setFormData] = useState({dish : "", rate : ""})
-const [sortedList, setSortedList] = useState(null)
-// const [tableCart, setTableCart] = useState([])
 
-// console.log(formData)
+    
+    const [formData, setFormData] = useState({dish : "", rate : ""})
+    const [sortedList, setSortedList] = useState(null)
+    const state = useSelector(state=>state.darbarReducer)
+    const dispatch = useDispatch()
+
+console.log("menurender")
 // console.log(sortedList)
 // console.log(tableCart)
 
@@ -40,21 +44,35 @@ function searchList(){
     // console.log(tempList)
 }
 
+
 function handleClick(e,item){
     e.preventDefault()
     // console.log(item)
-    setFormData({dish : item.dish, rate: item.rate})
+    setFormData(prev=>{
+        return {...prev, dish : item.dish, rate: item.rate}
+    })
     setSortedList()
+    // console.log(props.tableno)
+   
+
+
+}
+
+function handleEnter(e){
+    e.preventDefault()
+    dispatch(writeItem({tableno : props.tableno, dish : formData.dish, rate : formData.rate}))
+    setFormData({dish : "", rate : ""})
 }
 
     return ( 
-        <div className="items">
+        <div className="item-form">
             <div className="parent">
             <input className="dish" value={formData.dish} onChange={handleChange} type="text" />
             <div className="rate">{formData.rate}</div>
+            <div onClick={handleEnter} className="enter">Enter</div>
             {sortedList ? (
             <div className="sorted-list">
-            {sortedList.map((item,index)=>{
+            {sortedList.map((item,index)=>{ 
 
                 return <div key={index} onClick={(e)=>handleClick(e,item)}>{item.dish}</div>
             })}
