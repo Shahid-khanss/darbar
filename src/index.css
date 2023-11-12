@@ -1,40 +1,48 @@
 body{
   background-color: white;
+  border: 1px solid black;
+  height: 730px;
 }
 
-.home-card{
-  background-color: white;
-  /* border: 2px solid black; */
-  box-shadow: 2px 2px 5px 2px gray;
-  padding: 10px;
- 
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content:space-between;
-}
 
 /* 
   Outer layout of tables and main window
 */
 
-.darbar{
+
+.darbar-grid{
   border: 2px solid red;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  /* display: block; */
+  flex-direction:row;
+  flex-wrap:wrap;
   /* width: 500px; */
-  height: 80vw;
+  height: 100%;
 }
 
 .table{
-  border: 1px solid rgb(38, 0, 255);
+  /* border: 1px solid rgb(38, 0, 255); */
+  background-color: rgb(255, 148, 148);
   width: 50px;
   height: 50px;
   margin: 10px;
   border-radius: 5px;
-  
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.table-active{
+  /* border: 1px solid rgb(38, 0, 255); */
+  background-color: aquamarine;
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  border-radius: 5px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .table-cart{
@@ -174,23 +182,6 @@ form-item css
 
 }
 
-
-
-/* .add-items{
-  border: 1px solid black;
-  padding: 2px;
-  font-size: 1.2em;
-  margin: 2px;
-  text-decoration: none;
-} */
-
-/* .delete{
-  display: inline;
-  border: 1px solid black;
-  padding: 2px;
-  margin: 5px;
-  
-} */
 
 .enter{
   display: inline-block;

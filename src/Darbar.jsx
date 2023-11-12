@@ -1,21 +1,22 @@
 import { useEffect, useState } from "react";
 // import TableMenu from "./TableMenu";
 import { useSelector, useDispatch } from "react-redux"
-import { writeItem,displayTable } from "./features/darbarSlice";
+import { writeItem,activeTable } from "./features/darbarSlice";
 import TableCart from "./TableCart";
 
 const Darbar = () => {
 
+// const [active, setActive] = useState("table")
 const [clicked, setClicked] = useState(false)
 const state = useSelector(state=>state.darbarReducer)
+
 // console.log(state)
 
 const dispatch = useDispatch()
 
-// useEffect(()=>{
+// check for active tables
+dispatch(activeTable())
 
-//     dispatch(writeItem({tableno : 20, dish : "chicken", rate : 200}))
-// },[])
 
 
 function handleClickTable(e,tableno){
@@ -30,7 +31,7 @@ function handleHome(){
 
 
 return ( 
-    <div>
+    <div className="main-page">
     {clicked      // if clicked (true state) on table then show this and send a prop with table no. which is clicked 
     ?
         <div>
@@ -44,7 +45,7 @@ return (
         </div>   
         </div>
     : 
-        <div className="darbar">
+        <div className="darbar-grid">
         {
         // mapping the tables from the data
         state.map(table=>{
@@ -53,8 +54,8 @@ return (
                 onClick={(e)=>
                     // sending the table number for prop and setting click state to true
                     handleClickTable(e,table.tableno)} 
-                className="table">
-                    table {table.tableno}
+                className={table.active ? "table-active" : "table"}>
+                    T {table.tableno}
                 </div>
             )
         })}
