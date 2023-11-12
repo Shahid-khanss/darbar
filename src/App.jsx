@@ -12,7 +12,7 @@ function App() {
 
   return (
     <>
-  
+      <img src="src\assets\logo.png" alt="" />
       <Darbar/>
     </>
   )

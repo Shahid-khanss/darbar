@@ -1,9 +1,15 @@
 body{
-  background-color: white;
+  /* background-color: rgb(51, 51, 51); */
   border: 1px solid black;
   height: 730px;
+  font-family: 'Roboto', sans-serif;
+
 }
 
+img{
+  width: 100%;
+  background-color: black;
+}
 
 /* 
   Outer layout of tables and main window
@@ -17,6 +23,7 @@ body{
   flex-wrap:wrap;
   /* width: 500px; */
   height: 100%;
+  background-color: black;
 }
 
 .table{
@@ -71,31 +78,39 @@ body{
   display: flex;
   margin-block: 5px;
   background-color: rgb(0, 255, 191);
+  padding: 3px;
   /* justify-content:space-around; */
   /* display: inline; */
 }
 
 .sno-row{
   /* width: 10%; */
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: inline;
   margin-inline: 5px;
   padding: 1px;
+  margin-block: auto;
 }
 
 .dish-row{
   width: 50%;
   height: 20px;
   word-wrap: break-word;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: inline;
+  margin-block: auto;
 }
 
 .rate-row{
   width: 10%;
-  border: 2px solid red;
+  text-align: center;
+  border:1px solid black;
+  padding: 2px;
   display: inline;
   margin-inline: 20px;
+  background-color: rgb(255, 251, 0);
+  border-radius: 2px;
+  margin-block: auto;
 }
 
 .edit-row{
@@ -115,11 +130,12 @@ body{
 .total-row{
   /* display: inline-block; */
   border: 1px solid black;
-  padding: 2px;
+  padding: 3px;
   margin-left: auto;
   margin-block: 10px;
   background-color: rgb(255, 251, 0);
-  width: 100px;
+  /* width: 100px; */
+  text-align: end;
 
 }
 
@@ -129,7 +145,7 @@ form-item css
 
 .parent{
   position: relative;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   /* display: flex; */
   /* justify-content:space-around; */
   /* display: inline; */
@@ -145,9 +161,13 @@ form-item css
 
 .rate{
   width: 10%;
-  border: 2px solid red;
+  border: 1px solid red;
   display: inline;
   margin-inline: 20px;
+  padding: 2px;
+  background-color: rgb(255, 251, 0);
+  margin-block: auto;
+  text-align: center;
 }
 
 /* 
@@ -186,7 +206,8 @@ form-item css
 .enter{
   display: inline-block;
   border: 1px solid black;
-  padding: 2px;
+  padding: 3px;
   margin-left: 10px;
+  background-color: aqua;
 }
 
