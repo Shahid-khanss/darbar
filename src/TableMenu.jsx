@@ -1,7 +1,7 @@
 import { useState } from "react"
 import menuList from "./menuList"
 import { useSelector, useDispatch } from "react-redux"
-import { writeItem } from "./features/darbarSlice"
+import { writeItem, total } from "./features/darbarSlice"
 
 
 const TableMenu = (props) => {
@@ -60,8 +60,9 @@ function handleClick(e,item){
 
 function handleEnter(e){
     e.preventDefault()
-    dispatch(writeItem({tableno : props.tableno, dish : formData.dish, rate : formData.rate}))
+    dispatch(writeItem({tableno : props.tableno, dish : formData.dish, rate : Number(formData.rate)}))
     setFormData({dish : "", rate : ""})
+    dispatch(total({tableno : props.tableno}))
 }
 
     return ( 

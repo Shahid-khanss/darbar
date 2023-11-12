@@ -35,6 +35,7 @@ return (
     ?
         <div>
         
+        <div className="home-tableno" onClick={handleHome}>Table No : {clicked}</div>    
         <div className="home-row" onClick={handleHome}>Home</div>    
         <div><TableCart
                 clicked={clicked}

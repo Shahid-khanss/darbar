@@ -34,16 +34,26 @@ function handleDelete(e,tableno,index){
                         <div className="rate-row">{dish.rate}</div>
                         {/* <div className="edit-row">Edit</div> */}
                         <div onClick={(e)=>{handleDelete(e,table.tableno,index)}} className="delete-row">Delete</div>
+                       
                         </div>
                     )
                 })
             }
         })}
+
+            { 
+            state.map(table=>{
+                if(table.tableno==props.clicked){
+                    return  (<div className="total-row">Total : ₹ {table.total}/-</div>)
+                   }})
+            }
+
          <TableMenu
             tableno = {props.clicked}
 
             />
-        </div>
+           
+        </div> 
      );
 }
 

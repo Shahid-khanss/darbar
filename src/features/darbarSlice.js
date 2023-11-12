@@ -20,12 +20,12 @@ const initialState = [
 
 
 const initialState = [
-    {display : false, tableno : "1", items : []},
-    {display : false,tableno : "2", items : []},
-    {display : false,tableno : "3", items : []},
-    {display : false,tableno : "4", items : []},
-    {display : false,tableno : "5", items : []},
-    {display : false,tableno : "6", items : []},
+    {display : false, tableno : "1", items : [], total : ""},
+    {display : false, tableno : "2", items : [], total : ""},
+    {display : false, tableno : "3", items : [], total : ""},
+    {display : false, tableno : "4", items : [], total : ""},
+    {display : false, tableno : "5", items : [], total : ""},
+    {display : false, tableno : "6", items : [], total : ""},
   
 ]
 
@@ -59,10 +59,25 @@ const darbarSlice = createSlice({
                     table.display=false;
                 }
             })
+        },
+        total(state,action){
+            const {tableno} = action.payload
+            let t = 0;
+            state.forEach(table=>{
+                if(table.tableno==tableno){
+                   table.items.forEach(item=>{
+
+                       t = t+item.rate
+                   }
+                   
+                   )
+                   table.total = t
+                }
+            })
         }
     }
 })
 
 export default darbarSlice.reducer
 
-export const {writeItem, deleteItem, displayTable} = darbarSlice.actions
+export const {writeItem, deleteItem, displayTable, total} = darbarSlice.actions
