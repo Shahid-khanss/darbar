@@ -60,7 +60,7 @@ function handleClick(e,item){
 
 function handleEnter(e){
     e.preventDefault()
-    dispatch(writeItem({tableno : props.tableno, dish : formData.dish, rate : Number(formData.rate)}))
+    dispatch(writeItem({tableno : props.tableno, dish : formData.dish, rate : Number(formData.rate), q:1}))
     setFormData({dish : "", rate : ""})
     dispatch(total({tableno : props.tableno}))
 }

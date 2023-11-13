@@ -7,7 +7,7 @@ import { createSlice } from '@reduxjs/toolkit'
 /* 
 
 const initialState = [
-    {display : false, tableno : "1", items : [{dish : "Dish", rate : "Rate"}]},
+    {display : false, tableno : "1", items : [{dish : "Dish", rate : "Rate", quantity : 1}]},
     {display : false,tableno : "2", items : [{dish : "", rate : ""}]},
     {display : false,tableno : "3", items : [{dish : "soya", rate : 500}]},
     {display : false,tableno : "4", items : [{dish : "", rate : ""}]},
@@ -38,11 +38,11 @@ const darbarSlice = createSlice({
     initialState,
     reducers : {
         writeItem(state,action){ // action should contain table no. and the dish / rate object.
-            const {tableno, dish, rate} = action.payload;
-           console.log(action.payload)
+            const {tableno, dish, rate,q} = action.payload;
+        //    console.log(action.payload)
             state.forEach(table=>{
             if(table.tableno==tableno){
-                table.items.push({dish,rate})
+                table.items.push({dish,rate,q})
             }
            })
 

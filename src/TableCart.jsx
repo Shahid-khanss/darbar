@@ -44,6 +44,19 @@ function handleCheckout(e,tableno){
                         <div className="sno-row">{index+1}</div>
                         <div className="dish-row">{dish.dish}</div>
                         <div className="rate-row">{dish.rate}</div>
+                        <div className="quantity-field" >
+                            <button 
+                                className="value-button decrease-button" 
+                                onclick="decreaseValue(this)" 
+                                title="Azalt">-</button>
+                                <div className="number">{dish.q}</div>
+                            <button 
+                                className="value-button increase-button" 
+                                onclick="increaseValue(this, 5)"
+                                title="Arrtır"
+                            >+
+                            </button>
+                            </div>
                         {/* <div className="edit-row">Edit</div> */}
                         <div onClick={(e)=>{handleDelete(e,table.tableno,index)}} className="delete-row"><span className="material-symbols-outlined">
 delete_forever
