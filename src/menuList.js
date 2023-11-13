@@ -1,6 +1,7 @@
 const list = [
 
-    {dish : "one",rate : "100"},
+    {dish : "Chicken Tikka (H)",rate : "160"},
+    {dish : "Chicken Tikka (F)",rate : "300"},
     {dish : "paneer tikka",rate : "150"},
     {dish : "paneer do pyaza",rate : "200"},
     {dish : "soya chap",rate : "200"},

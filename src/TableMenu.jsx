@@ -31,7 +31,7 @@ function searchList(){
   if(formData){
       
       for(let i=0;i<menuList.length;i++){
-          if(menuList[i].dish.indexOf(formData.dish)>-1){
+          if(menuList[i].dish.toUpperCase().indexOf(formData.dish.toUpperCase())>-1){
              tempList.push({dish : menuList[i].dish, rate : menuList[i].rate}) 
   
           }else{

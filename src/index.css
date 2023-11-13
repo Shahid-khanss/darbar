@@ -10,6 +10,7 @@ body{
 .material-symbols-outlined {
   
   font-size: 1.5em;
+  margin: auto;
   font-variation-settings:
   'FILL' 0,
   'wght' 400,
