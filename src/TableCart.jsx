@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 // import TableMenu from "./TableMenu";
 import { useSelector, useDispatch } from "react-redux"
-import { writeItem, deleteItem,total } from "./features/darbarSlice";
+import { writeItem, deleteItem,total, checkOut } from "./features/darbarSlice";
 import TableMenu from "./TableMenu";
 
 function TableCart(props) {
@@ -17,6 +17,13 @@ function handleDelete(e,tableno,index){
     dispatch(deleteItem({tableno,index}))
     dispatch(total({tableno}))                  //update total value of table after deleting
 }
+
+function handleCheckout(e,tableno){
+    e.preventDefault()
+    dispatch(checkOut({tableno}))
+}
+
+
 
     return ( 
         <div className="table-cart">
@@ -46,7 +53,12 @@ delete_forever
             { 
             state.map(table=>{
                 if(table.tableno==props.clicked){
-                    return  (<div className="total-row">Total : ₹ {table.total}/-</div>)
+                    return  (
+                    <>
+                    <div className="total-row">Total : ₹ {table.total}/-</div>
+                    <div onClick={(e)=>{handleCheckout(e,table.tableno)}} className="checkout-row">Checkout</div>
+                    </>
+                    )
                    }})
             }
 

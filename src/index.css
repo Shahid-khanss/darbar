@@ -151,6 +151,17 @@ img{
 
 }
 
+.checkout-row{
+    /* display: inline-block; */
+    border: 1px solid black;
+    padding: 3px;
+    margin-left: auto;
+    margin-block: 10px;
+    background-color: rgb(255, 137, 137);
+    /* width: 100px; */
+    text-align: end;
+}
+
 /* 
 form-item css
 */
