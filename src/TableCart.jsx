@@ -39,7 +39,7 @@ function handleCheckout(e,tableno){
             if(table.tableno==props.clicked){
                 return table.items.map((dish,index)=>{
                     return(
-                        <div className="parent-row">
+                        <div key={index} className="parent-row">
                         {/* <div className="sno">{dish.dish}</div> */}
                         <div className="sno-row">{index+1}</div>
                         <div className="dish-row">{dish.dish}</div>
@@ -56,15 +56,15 @@ delete_forever
         })}
 
             { 
-            state.map(table=>{
+            state.map((table,index)=>{
                 if(table.tableno==props.clicked){
                     return  (
-                    <>
+                    <div key={index}>
                     <div className="total-row">Total : ₹ {table.total}/-</div>
-                    <div onClick={(e)=>{handleCheckout(e,table.tableno)}} className="checkout-row"><span class="material-symbols-outlined cart">
+                    <div onClick={(e)=>{handleCheckout(e,table.tableno)}} className="checkout-row"><span className="material-symbols-outlined cart">
 shopping_cart_checkout
 </span></div>
-                    </>
+                    </div>
                     )
                    }})
             }

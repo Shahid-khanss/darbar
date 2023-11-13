@@ -37,7 +37,7 @@ return (
         <div>
         
         <div className="home-tableno" onClick={handleHome}>Table No : {clicked}</div>    
-        <div className="home-row" onClick={handleHome}><span class="material-symbols-outlined">home</span></div>    
+        <div className="home-row" onClick={handleHome}><span className="material-symbols-outlined">home</span></div>    
         <div><TableCart
                 clicked={clicked}
 
@@ -48,9 +48,10 @@ return (
         <div className="darbar-grid">
         {
         // mapping the tables from the data
-        state.map(table=>{
+        state.map((table,index)=>{
             return (
                 <div
+                key={index}
                 onClick={(e)=>
                     // sending the table number for prop and setting click state to true
                     handleClickTable(e,table.tableno)} 
