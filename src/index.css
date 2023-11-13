@@ -206,6 +206,8 @@ form-item css
   box-shadow: 2px 2px 5px 2px gray;
   padding: 5px;
   font-size: 1.5em;
+  height: 20vh;
+  overflow: scroll;
 }
 
 
