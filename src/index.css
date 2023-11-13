@@ -18,6 +18,15 @@ body{
   'opsz' 24
 }
 
+.cart{
+  font-size: 1.9em;
+  margin: auto;
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
 
 img{
   width: 100%;
@@ -126,18 +135,57 @@ img{
   margin-block: auto;
 }
 
-.edit-row{
-  display: inline-block;
-  border: 1px solid black;
-  padding: 2px;
-  margin-left: 10px;
+.parent-row-header{
+  position: relative;
+  border: 1px solid blue;
+  display: flex;
+  margin-block: 5px;
+  background-color: rgb(0, 0, 0);
+  padding: 3px;
+
+  /* justify-content:space-around; */
+  /* display: inline; */
 }
+
+.sno-row-header{
+  /* width: 10%; */
+  /* border: 1px solid red; */
+  display: inline;
+  margin-inline: 5px;
+  padding: 1px;
+  margin-block: auto;
+  color: white;
+}
+
+.dish-row-header{
+  width: 50%;
+  height: 20px;
+  word-wrap: break-word;
+  /* border: 1px solid red; */
+  display: inline;
+  margin-block: auto;
+  color: white;
+}
+
+.rate-row-header{
+  width: 10%;
+  text-align: center;
+  border:1px solid black;
+  padding: 2px;
+  display: inline;
+  margin-inline: 20px;
+  background-color: rgb(255, 251, 0);
+  border-radius: 2px;
+  margin-block: auto;
+}
+
 
 .delete-row{
   display: inline-block;
   /* border: 1px solid black; */
   padding: 2px;
   margin-left: 10px;
+  color: rgb(255, 0, 0);
 }
 
 .total-row{
@@ -156,11 +204,15 @@ img{
     /* display: inline-block; */
     border: 1px solid black;
     padding: 3px;
-    margin-left: auto;
+    /* margin-inline-end: auto; */
     margin-block: 10px;
     background-color: rgb(255, 137, 137);
     /* width: 100px; */
-    text-align: end;
+    /* text-align: end; */
+    width: 70px;
+    text-align: center;
+    align-items: center;
+    margin-right: auto;
 }
 
 /* 

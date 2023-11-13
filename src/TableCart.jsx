@@ -28,7 +28,12 @@ function handleCheckout(e,tableno){
     return ( 
         <div className="table-cart">
             
-           
+            <div className="parent-row-header">
+                        {/* <div className="sno">{dish.dish}</div> */}
+                        <div className="sno-row-header">N</div>
+                        <div className="dish-row-header">ITEMS</div>
+                        <div className="rate-row-header">₹</div>
+            </div>
             
             {state.map(table=>{
             if(table.tableno==props.clicked){
@@ -56,7 +61,9 @@ delete_forever
                     return  (
                     <>
                     <div className="total-row">Total : ₹ {table.total}/-</div>
-                    <div onClick={(e)=>{handleCheckout(e,table.tableno)}} className="checkout-row">Checkout</div>
+                    <div onClick={(e)=>{handleCheckout(e,table.tableno)}} className="checkout-row"><span class="material-symbols-outlined cart">
+shopping_cart_checkout
+</span></div>
                     </>
                     )
                    }})
