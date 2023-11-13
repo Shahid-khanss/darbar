@@ -2,10 +2,12 @@
 import { useEffect, useState } from "react";
 // import TableMenu from "./TableMenu";
 import { useSelector, useDispatch } from "react-redux"
-import { writeItem, deleteItem,total, checkOut } from "./features/darbarSlice";
+import { writeItem, deleteItem,total, checkOut, increase, decrease } from "./features/darbarSlice";
 import TableMenu from "./TableMenu";
 
 function TableCart(props) {
+   
+    
     
     const state = useSelector(state=>state.darbarReducer)
     console.log(state)
@@ -23,7 +25,16 @@ function handleCheckout(e,tableno){
     dispatch(checkOut({tableno}))
 }
 
+function handleDecrease(e,tableno,dishIndex){
+    e.preventDefault()
+    dispatch(decrease({tableno,dishIndex}))
+}
 
+function handleIncrease(e,tableno,dishIndex){
+    e.preventDefault()
+    // console.log({tableno,dishIndex})
+    dispatch(increase({tableno,dishIndex}))
+}
 
     return ( 
         <div className="table-cart">
@@ -47,12 +58,12 @@ function handleCheckout(e,tableno){
                         <div className="quantity-field" >
                             <button 
                                 className="value-button decrease-button" 
-                                onclick="decreaseValue(this)" 
+                                onClick={(e)=>{handleDecrease(e,table.tableno,index)}} 
                                 title="Azalt">-</button>
                                 <div className="number">{dish.q}</div>
                             <button 
                                 className="value-button increase-button" 
-                                onclick="increaseValue(this, 5)"
+                                onClick={(e)=>{handleIncrease(e,table.tableno,index)}}
                                 title="Arrtır"
                             >+
                             </button>

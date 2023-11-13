@@ -86,10 +86,28 @@ const darbarSlice = createSlice({
                    table.items = []
                 }
             })
-        }
+        },
+        increase(state,action){
+            console.log(state.payload)
+            const {tableno,dishIndex} = action.payload;
+            state.forEach(table=>{
+                if(table.tableno==tableno){
+                    table.items[dishIndex].q++
+                }
+            })
+        },
+        decrease(state,action){
+            console.log(state.payload)
+            const {tableno,dishIndex} = action.payload;
+            state.forEach(table=>{
+                if(table.tableno==tableno){
+                    table.items[dishIndex].q--
+                }
+            })
+        },
     }
 })
 
 export default darbarSlice.reducer
 
-export const {writeItem, deleteItem, activeTable, total, checkOut} = darbarSlice.actions
+export const {writeItem, deleteItem, activeTable, total, checkOut, increase, decrease} = darbarSlice.actions
