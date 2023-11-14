@@ -37,6 +37,14 @@ function handleIncrease(e,tableno,dishIndex){
     dispatch(increase({tableno,dishIndex}))
     dispatch(total({tableno}))
 }
+// const [x,setX] = useState(0)
+
+// function handleTouchMove(e){
+//     // e.preventDefault()
+//     setX(e.nativeEvent.touches[0].clientX)
+//     console.log(x)
+// }
+
 
     return ( 
         <div className="table-cart">
@@ -87,9 +95,14 @@ delete_forever
             state.map((table,index)=>{
                 if(table.tableno==props.clicked){
                     return  (
-                    <div key={index}>
+                    <div 
+                    
+                    className="checkout-parent" key={index}>
                     <div className="total-row">Total : ₹ {table.total}/-</div>
-                    <div onClick={(e)=>{handleCheckout(e,table.tableno)}} className="checkout-row"><span className="material-symbols-outlined cart">
+                    <div 
+                    onClick={(e)=>{handleCheckout(e,table.tableno)}} 
+                  
+                    className="checkout-row"><span className="material-symbols-outlined cart">
 shopping_cart_checkout
 </span></div>
                     </div>

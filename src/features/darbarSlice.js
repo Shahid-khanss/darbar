@@ -102,8 +102,9 @@ const darbarSlice = createSlice({
             const {tableno,dishIndex} = action.payload;
             state.forEach(table=>{
                 if(table.tableno==tableno){
+                    if(table.items[dishIndex].q>1){
                     table.items[dishIndex].q--
-                    table.items[dishIndex].amount=table.items[dishIndex].q*table.items[dishIndex].rate
+                    table.items[dishIndex].amount=table.items[dishIndex].q*table.items[dishIndex].rate}
                 }
             })
         },

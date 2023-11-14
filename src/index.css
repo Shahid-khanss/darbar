@@ -296,6 +296,10 @@ img{
 
 }
 
+.checkout-parent{
+  border: 1px solid red;
+}
+
 .checkout-row{
     /* display: inline-block; */
     border: 1px solid black;
@@ -310,6 +314,8 @@ img{
     align-items: center;
     margin-right: auto;
 }
+
+
 
 /* 
 form-item css
