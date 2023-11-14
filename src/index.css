@@ -168,9 +168,10 @@ img{
   display: flex;
   margin-block: 5px;
   background-color: rgb(0, 255, 191);
-  padding: 3px;
+  padding: 1px;
   /* justify-content:space-around; */
   /* display: inline; */
+ 
 }
 
 .sno-row{
@@ -201,6 +202,18 @@ img{
 }
 
 .rate-row{
+  width: 10%;
+  text-align: center;
+  border:1px solid black;
+  padding: 2px;
+  display: inline;
+  margin-inline: 20px;
+  background-color: rgb(255, 251, 0);
+  border-radius: 2px;
+  margin-block: auto;
+}
+
+.amount-row{
   width: 10%;
   text-align: center;
   border:1px solid black;

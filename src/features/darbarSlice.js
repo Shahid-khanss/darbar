@@ -38,11 +38,11 @@ const darbarSlice = createSlice({
     initialState,
     reducers : {
         writeItem(state,action){ // action should contain table no. and the dish / rate object.
-            const {tableno, dish, rate,q} = action.payload;
+            const {tableno, dish, rate,q,amount} = action.payload;
         //    console.log(action.payload)
             state.forEach(table=>{
             if(table.tableno==tableno){
-                table.items.push({dish,rate,q})
+                table.items.push({dish,rate,q,amount})
             }
            })
 
@@ -88,11 +88,12 @@ const darbarSlice = createSlice({
             })
         },
         increase(state,action){
-            console.log(state.payload)
+            // console.log(state.payload)
             const {tableno,dishIndex} = action.payload;
             state.forEach(table=>{
                 if(table.tableno==tableno){
                     table.items[dishIndex].q++
+                    table.items[dishIndex].amount=table.items[dishIndex].q*table.items[dishIndex].rate
                 }
             })
         },
@@ -102,6 +103,7 @@ const darbarSlice = createSlice({
             state.forEach(table=>{
                 if(table.tableno==tableno){
                     table.items[dishIndex].q--
+                    table.items[dishIndex].amount=table.items[dishIndex].q*table.items[dishIndex].rate
                 }
             })
         },

@@ -68,6 +68,8 @@ function handleIncrease(e,tableno,dishIndex){
                             >+
                             </button>
                             </div>
+
+                        <div className="amount-row">{dish.amount}</div>
                         {/* <div className="edit-row">Edit</div> */}
                         <div onClick={(e)=>{handleDelete(e,table.tableno,index)}} className="delete-row"><span className="material-symbols-outlined">
 delete_forever
