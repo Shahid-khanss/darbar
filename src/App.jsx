@@ -16,19 +16,33 @@ function App() {
 
 // const dispatch = useDispatch()
 
+const [menuList,setmenuList] = useState()
+console.log(menuList)
+
   useEffect(()=>{
    
    async function fetchData(){
-     const data = await axios.get(`https://script.google.com/macros/s/AKfycbyXPOWs-qPm43TSLVIBUmPxJPntFhndNjEd9a6-An0g/dev`)
-     console.log(data)
+     const data = await axios.get(`https://script.google.com/macros/s/AKfycbw0VqlAd4rzKnRWNjpac-AwCBqTdp5TGxmdgmbE-MwQAvdT0-5Khd8vn6v-pxMqb0igAw/exec`)
+     setmenuList(data.data.data)
    }
    fetchData()
   },[])
 
   return (
+
     <>
-      <img src="src\assets\logo.png" alt="" />
+
+    {menuList
+    ?
+    <>
+    <img src="src\assets\logo.png" alt="" />
       <Darbar/>
+      </>
+    :
+    "Fetching Data"
+    }
+
+      
     </>
   )
 }

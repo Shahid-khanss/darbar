@@ -5,7 +5,7 @@ const initialState = {data : "null"}
 
 export const sheetDatabase = createAsyncThunk('menu/sheetDatabase', async (_, {rejectWithValue})=>{
     try{
-        const data = await axios.get(`https://script.google.com/macros/s/AKfycbyXPOWs-qPm43TSLVIBUmPxJPntFhndNjEd9a6-An0g/dev`, {headers : {'Content-Type' : "application/json"}})
+        const data = await axios.get(`https://script.google.com/macros/s/AKfycbw0VqlAd4rzKnRWNjpac-AwCBqTdp5TGxmdgmbE-MwQAvdT0-5Khd8vn6v-pxMqb0igAw/exec`, {headers : {'Content-Type' : "application/json"}})
         return data
     }catch(error){
         return rejectWithValue(error.response)
