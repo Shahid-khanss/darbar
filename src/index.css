@@ -18,7 +18,7 @@ counter --------------------------------------------------->
   width: 50px; 
   /* height: 40px; */
   margin: 0 auto;   
-  border: 1px solid red; 
+  /* border: 1px solid red;  */
 }
 
 .quantity-field .value-button{ 
@@ -41,13 +41,13 @@ counter --------------------------------------------------->
 }
 
 .quantity-field .decrease-button {
-  margin-right: -4px;
-  border-radius: 8px 0 0 8px;
+  /* margin-right: -4px; */
+  /* border-radius: 8px 0 0 8px; */
 }
 
 .quantity-field .increase-button {
-  margin-left: -4px;
-  border-radius: 0 8px 8px 0;
+  /* margin-left: -4px; */
+  /* border-radius: 0 8px 8px 0; */
 }
  
 .number{
