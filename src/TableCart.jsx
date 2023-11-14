@@ -28,12 +28,14 @@ function handleCheckout(e,tableno){
 function handleDecrease(e,tableno,dishIndex){
     e.preventDefault()
     dispatch(decrease({tableno,dishIndex}))
+    dispatch(total({tableno}))
 }
 
 function handleIncrease(e,tableno,dishIndex){
     e.preventDefault()
     // console.log({tableno,dishIndex})
     dispatch(increase({tableno,dishIndex}))
+    dispatch(total({tableno}))
 }
 
     return ( 

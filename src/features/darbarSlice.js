@@ -7,7 +7,7 @@ import { createSlice } from '@reduxjs/toolkit'
 /* 
 
 const initialState = [
-    {display : false, tableno : "1", items : [{dish : "Dish", rate : "Rate", quantity : 1}]},
+    {display : false, tableno : "1", items : [{dish : "Dish", rate : "Rate", quantity : 1, amount : ""}]},
     {display : false,tableno : "2", items : [{dish : "", rate : ""}]},
     {display : false,tableno : "3", items : [{dish : "soya", rate : 500}]},
     {display : false,tableno : "4", items : [{dish : "", rate : ""}]},
@@ -70,7 +70,7 @@ const darbarSlice = createSlice({
             state.forEach(table=>{
                 if(table.tableno==tableno){
                    table.items.forEach(item=>{
-                       t = t+item.rate
+                       t = t+item.amount
                    }
                    
                    )
