@@ -8,23 +8,24 @@ body{
 
 /* 
 
-counter
+counter --------------------------------------------------->
 */
 
 .quantity-field {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 120px; 
-  height: 40px;
-  margin: 0 auto;    
+  width: 50px; 
+  /* height: 40px; */
+  margin: 0 auto;   
+  border: 1px solid red; 
 }
 
 .quantity-field .value-button{ 
   border: 1px solid #ddd;
   margin: 0px;
-  width: 40px;
-  height: 100%;   
+  width: 20px;
+  height: 80%;   
   padding: 0;
   background: #eee; 
   outline: none;
@@ -49,20 +50,22 @@ counter
   border-radius: 0 8px 8px 0;
 }
  
-.quantity-field .number{
-  display: inline-block;
-  text-align: center;
+.number{
+  display: flex;
+  /* text-align: center; */
   border: none;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
-  margin: 0px;
-  width: 40px;
-  height: 100%;
-  line-height: 40px;
-  font-size: 11pt;
+  /* margin: 0px;*/
+  width: 30px;
+  height: 80%; 
+  /* line-height: 40px; */
+  /* font-size: 1.5em; */
   box-sizing: border-box; 
   background: white;
   font-family: calibri;
+  align-items: center;
+  justify-content: center;
 }
 
 .quantity-field .number::selection{
@@ -70,7 +73,7 @@ counter
 }
 
 /* 
-counter end
+counter end ----------------------------------------------------------->
 */
 .material-symbols-outlined {
   
