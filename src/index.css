@@ -17,15 +17,16 @@ counter --------------------------------------------------->
   align-items: center;
   width: 50px; 
   /* height: 40px; */
-  margin: 0 auto;   
+  /* margin: 0 auto;    */
   /* border: 1px solid red;  */
+  outline: 1px solid black;
 }
 
-.quantity-field .value-button{ 
+.value-button{ 
   border: 1px solid #ddd;
   margin: 0px;
   width: 20px;
-  height: 80%;   
+  /* height: 100%;    */
   padding: 0;
   background: #eee; 
   outline: none;
@@ -40,14 +41,16 @@ counter --------------------------------------------------->
   background: rgb(210, 210, 210);
 }
 
-.quantity-field .decrease-button {
-  /* margin-right: -4px; */
+.decrease-button {
+  margin-right: -4px;
   /* border-radius: 8px 0 0 8px; */
+  height: 20px;
 }
 
 .quantity-field .increase-button {
   /* margin-left: -4px; */
   /* border-radius: 0 8px 8px 0; */
+  height: 20px;
 }
  
 .number{
@@ -163,15 +166,17 @@ img{
 }
 
 .parent-row{
-  position: relative;
+  /* position: relative; */
   border: 1px solid blue;
   display: flex;
   margin-block: 5px;
   background-color: rgb(0, 255, 191);
-  padding: 1px;
+  /* padding: 1px; */
   /* justify-content:space-around; */
   /* display: inline; */
- 
+  /* height: 50px; */
+  align-items: center;
+
 }
 
 .sno-row{
@@ -185,11 +190,12 @@ img{
 
 .dish-row{
   width: 50%;
-  height: 20px;
+  /* height: 20px;  */
   word-wrap: break-word;
   /* border: 1px solid red; */
   display: inline;
   margin-block: auto;
+  padding: 1px;
 }
 
 .q-row{
