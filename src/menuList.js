@@ -1,3 +1,5 @@
+const URL = "https://script.google.com/macros/s/AKfycbyXPOWs-qPm43TSLVIBUmPxJPntFhndNjEd9a6-An0g/dev"
+
 const list = [
 
     {dish : "Chicken Tikka (H)",rate : "160"},
