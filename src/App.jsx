@@ -17,7 +17,7 @@ function App() {
 // const dispatch = useDispatch()
 
 const [menuList,setmenuList] = useState()
-console.log(menuList)
+// console.log(menuList)
 
   useEffect(()=>{
    
@@ -36,7 +36,10 @@ console.log(menuList)
     ?
     <>
     <img src="src\assets\logo.png" alt="" />
-      <Darbar/>
+      <Darbar
+      menuList = {menuList}
+      
+      />
       </>
     :
     "Fetching Data"

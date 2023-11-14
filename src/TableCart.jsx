@@ -112,6 +112,7 @@ shopping_cart_checkout
 
          <TableMenu
             tableno = {props.clicked}
+            menuList={props.menuList}
 
             />
            

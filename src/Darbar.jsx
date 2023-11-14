@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { writeItem,activeTable } from "./features/darbarSlice";
 import TableCart from "./TableCart";
 
-const Darbar = () => {
+const Darbar = (props) => {
 
 // const [active, setActive] = useState("table")
 const [clicked, setClicked] = useState(false)
@@ -40,6 +40,7 @@ return (
         <div className="home-row" onClick={handleHome}><span className="material-symbols-outlined">home</span></div>    
         <div><TableCart
                 clicked={clicked}
+                menuList={props.menuList}
 
         />
         </div>   

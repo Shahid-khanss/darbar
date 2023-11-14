@@ -1,12 +1,13 @@
 import { useState } from "react"
-import menuList from "./menuList"
+// import menuList from "./menuList"
 import { useSelector, useDispatch } from "react-redux"
 import { writeItem, total } from "./features/darbarSlice"
 
 
 const TableMenu = (props) => {
     
-
+const menuList = props.menuList
+// console.log(menuList)
     
     const [formData, setFormData] = useState({dish : "", rate : ""})
     const [sortedList, setSortedList] = useState(null)
