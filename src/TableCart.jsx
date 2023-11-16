@@ -41,17 +41,43 @@ async function generateBill(billingData){
         const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman)
         const page = pdfDoc.addPage()
         const { width, height } = page.getSize()
-        const fontSize = 30
+        
+        let fontSize = 50
         console.log(billingData)
-        for(let i=0;i<billingData.items.length;i++){
-            const {dish,rate,q} = billingData.items[i]
-            page.drawText(dish+" "+rate+" "+q, {
+       
+            page.drawText("Table", {
               x: 50,
-              y: height-i*80 - 4 * fontSize,
+              y: height - 1 * fontSize,
               size: fontSize,
               font: timesRomanFont,
-              color: rgb(0, 0.53, 0.71),
+              color: rgb(0, 0, 0),
             })
+        
+
+
+        fontSize = 30
+        console.log(billingData)
+        for(let i=0;i<=billingData.items.length;i++){
+            
+            if(i==billingData.items.length){ // for last iteration total
+                page.drawText("Total : "+billingData.total, {
+                    x: 50,
+                    y: height-i*80 - 4 * fontSize,
+                    size: fontSize,
+                    font: timesRomanFont,
+                    color: rgb(0, 0.53, 0.71),
+                  })
+            }else{
+
+                const {dish,rate,q,amount} = billingData.items[i]
+                page.drawText(dish+"-----"+rate+"-----"+q+"-----"+amount, {
+                  x: 50,
+                  y: height-i*80 - 4 * fontSize,
+                  size: fontSize,
+                  font: timesRomanFont,
+                  color: rgb(0, 0.53, 0.71),
+                })
+            }
         }
         
        
