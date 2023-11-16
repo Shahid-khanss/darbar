@@ -4,13 +4,14 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import { writeItem, deleteItem,total, checkOut, increase, decrease } from "./features/darbarSlice";
 import TableMenu from "./TableMenu";
+import { PDFDocument,StandardFonts, rgb } from "pdf-lib";
 
 function TableCart(props) {
    
-    
-    
+    let pdfBytes
+    let billingData={}
     const state = useSelector(state=>state.darbarReducer)
-    console.log(state)
+    // console.log(state)
     
 const dispatch = useDispatch()
 
@@ -20,9 +21,44 @@ function handleDelete(e,tableno,index){
     dispatch(total({tableno}))                  //update total value of table after deleting
 }
 
-function handleCheckout(e,tableno){
+async function handleCheckout(e,tableno){
     e.preventDefault()
+    await state.forEach(table=>{
+        if(table.tableno==tableno){
+           billingData=table
+        }
+    })
+
+    // console.log(billingData)
+    pdfBytes=await generateBill(billingData)
+    console.log(pdfBytes)
     dispatch(checkOut({tableno}))
+}
+
+async function generateBill(billingData){
+    async function createPdf(billingData) {
+        const pdfDoc = await PDFDocument.create()
+        const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman)
+        const page = pdfDoc.addPage()
+        const { width, height } = page.getSize()
+        const fontSize = 30
+        console.log(billingData)
+        for(let i=0;i<billingData.items.length;i++){
+            const {dish,rate,q} = billingData.items[i]
+            page.drawText(dish+" "+rate+" "+q, {
+              x: 50,
+              y: height-i*80 - 4 * fontSize,
+              size: fontSize,
+              font: timesRomanFont,
+              color: rgb(0, 0.53, 0.71),
+            })
+        }
+        
+       
+        // console.log("inside")
+         return await pdfDoc.saveAsBase64({dataUri : true})
+      }
+      return await createPdf(billingData)
 }
 
 function handleDecrease(e,tableno,dishIndex){

@@ -2,6 +2,7 @@ import { useState } from "react"
 // import menuList from "./menuList"
 import { useSelector, useDispatch } from "react-redux"
 import { writeItem, total } from "./features/darbarSlice"
+import { PDFDocument } from "pdf-lib"
 
 
 const TableMenu = (props) => {
@@ -14,7 +15,7 @@ const menuList = props.menuList
     const state = useSelector(state=>state.darbarReducer)
     const dispatch = useDispatch()
 
-console.log("menurender")
+// console.log("menurender")
 // console.log(sortedList)
 // console.log(tableCart)
 
