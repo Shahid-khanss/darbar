@@ -37,42 +37,69 @@ async function handleCheckout(e,tableno){
 
 async function generateBill(billingData){
     async function createPdf(billingData) {
+        let currentdate = new Date(); 
+    let billNo =    
+                currentdate.getFullYear().toString()
+                + (currentdate.getMonth()+1).toString()
+                +currentdate.getDate().toString()
+                + currentdate.getHours().toString()  
+                + currentdate.getMinutes().toString()
+                + currentdate.getSeconds().toString();
+        
+        
+        
         const pdfDoc = await PDFDocument.create()
         const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman)
         const page = pdfDoc.addPage()
         const { width, height } = page.getSize()
         
-        let fontSize = 50
+        let fontSize = 30
         console.log(billingData)
        
-            page.drawText("Table", {
+            page.drawText("SHAHI DARBAR", {
               x: 50,
               y: height - 1 * fontSize,
               size: fontSize,
               font: timesRomanFont,
               color: rgb(0, 0, 0),
             })
+            page.drawText("Bill No: "+billNo, {
+                x: 50,
+                y: height - 2 * fontSize,
+                size: fontSize,
+                font: timesRomanFont,
+                color: rgb(0, 0, 0),
+              })
         
+              page.drawText("ITEMS--------------RATE---QTY----AMT", {
+                x: 50,
+                y: height - 3.5 * fontSize,
+                size: fontSize,
+                font: timesRomanFont,
+                color: rgb(0, 0, 0),
+              })
 
 
         fontSize = 30
         console.log(billingData)
+               
+        
         for(let i=0;i<=billingData.items.length;i++){
             
             if(i==billingData.items.length){ // for last iteration total
                 page.drawText("Total : "+billingData.total, {
                     x: 50,
-                    y: height-i*80 - 4 * fontSize,
+                    y: height-(i+.5)*80 - 4 * fontSize,
                     size: fontSize,
                     font: timesRomanFont,
-                    color: rgb(0, 0.53, 0.71),
+                    color: rgb(0, 0, 0),
                   })
             }else{
 
                 const {dish,rate,q,amount} = billingData.items[i]
                 page.drawText(dish+"-----"+rate+"-----"+q+"-----"+amount, {
                   x: 50,
-                  y: height-i*80 - 4 * fontSize,
+                  y: height-(i+.5)*80 - 4 * fontSize,
                   size: fontSize,
                   font: timesRomanFont,
                   color: rgb(0, 0.53, 0.71),
