@@ -86,19 +86,19 @@ h=7
         
         for(let i=0;i<=billingData.items.length;i++){
             
-            if(i==billingData.items.length){ // for last iteration total
+            if(i==billingData.items.length){ 
                 
-                page.drawText("_________________________________", {
+                page.drawText(`${"\n".repeat(i)}_________________________________`, {
                     x: 50,
-                    y: height-(i+h)*30 - 2 * fontSize,
+                    y: height-(h)*30 - 2 * fontSize,
                     size: fontSize,
                     font: timesRomanFont,
                     color: rgb(0, 0, 0),
                   })
                 
-                page.drawText("Total : "+billingData.total, {
+                page.drawText(`${"\n".repeat(i+1)}Total : ${billingData.total}`, {
                     x: 50,
-                    y: height-(i+h)*35 - 2 * fontSize, // as (i+1) increases text moves down
+                    y: height-(h)*35 - 2 * fontSize, 
                     size: fontSize,
                     font: timesRomanFont,
                     color: rgb(0, 0, 0),
