@@ -12,6 +12,8 @@ function TableCart(props) {
     let pdfBase64Url
     let pdfBase64
     let billingData={}
+
+    // const [bill, setBill] = useState(false)
     const state = useSelector(state=>state.darbarReducer)
     // console.log(state)
     
@@ -50,9 +52,10 @@ async function handleCheckout(e,tableno){
     })
 
 
-    const output = billingData.data
-    console.log(output)
+    // const output = billingData.data
+    // console.log(output)
     console.log(pdfBase64Url)
+    // await open(pdfBase64Url)
     dispatch(checkOut({tableno}))
 }
 
