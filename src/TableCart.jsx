@@ -8,7 +8,7 @@ import { PDFDocument,StandardFonts, rgb } from "pdf-lib";
 
 function TableCart(props) {
    
-    let pdfBytes
+    let pdfBase64Url
     let billingData={}
     const state = useSelector(state=>state.darbarReducer)
     // console.log(state)
@@ -30,8 +30,8 @@ async function handleCheckout(e,tableno){
     })
 
     // console.log(billingData)
-    pdfBytes=await generateBill(billingData)
-    console.log(pdfBytes)
+    pdfBase64Url=await generateBill(billingData)
+    console.log(pdfBase64Url)
     dispatch(checkOut({tableno}))
 }
 
@@ -62,17 +62,18 @@ async function generateBill(billingData){
             h=1
             page.drawText(
 `          
-SHAHI DARBAR
-Bill No. ${billNo}
+                                    SHAHI DARBAR
+
+Bill No. : ${billNo}              Date : ${currentdate.getDate()}-${currentdate.getMonth()+1}-${currentdate.getFullYear()}
 
 
-ITEMS--------------RATE---QTY----AMT
-____________________________________
+ITEMS---------------------------RATE--------QTY-------AMT
+-----------------------------------------------------------------------
 `,     
             {
               x: 50,
               y: height-h*20 - 2 * fontSize,
-              size: fontSize,
+              size: 20,
               font: timesRomanFont,
               color: rgb(0, 0, 0),
             })
@@ -88,7 +89,7 @@ h=7
             
             if(i==billingData.items.length){ 
                 
-                page.drawText(`${"\n".repeat(i)}_________________________________`, {
+                page.drawText(`${"\n".repeat(i*2)}-----------------------------------------------`, {
                     x: 50,
                     y: height-(h)*30 - 2 * fontSize,
                     size: fontSize,
@@ -96,7 +97,7 @@ h=7
                     color: rgb(0, 0, 0),
                   })
                 
-                page.drawText(`${"\n".repeat(i+1)}Total : ${billingData.total}`, {
+                page.drawText(`${"\n".repeat(i*2)}                                         Total : ${billingData.total}`, {
                     x: 50,
                     y: height-(h)*35 - 2 * fontSize, 
                     size: fontSize,
@@ -106,12 +107,12 @@ h=7
             }else{
 
                 const {dish,rate,q,amount} = billingData.items[i]
-                page.drawText(`${"\n".repeat(i)}${dish}-----${rate}-----${q}-----${amount}`, {
+                page.drawText(`${"\n".repeat(i*2)}${dish}-----${rate}-----${q}-----${amount}`, {
                   x: 50,
                   y: height-(h)*30 - 2 * fontSize,
                   size: fontSize,
                   font: timesRomanFont,
-                  color: rgb(0, 0.53, 0.71),
+                  color: rgb(0, 0, 1),
                 })
             }
         }
