@@ -53,33 +53,33 @@ async function generateBill(billingData){
         const page = pdfDoc.addPage()
         const { width, height } = page.getSize()
         
+        // y : height (total height of page) - 2 * fontsize (it signifies line width from next line)
+
         let fontSize = 30
+        let h = 1
         console.log(billingData)
-       
-            page.drawText("SHAHI DARBAR", {
+
+            h=1
+            page.drawText(
+`          
+SHAHI DARBAR
+Bill No. ${billNo}
+
+
+ITEMS--------------RATE---QTY----AMT
+____________________________________
+`,     
+            {
               x: 50,
-              y: height - 1 * fontSize,
+              y: height-h*20 - 2 * fontSize,
               size: fontSize,
               font: timesRomanFont,
               color: rgb(0, 0, 0),
             })
-            page.drawText("Bill No: "+billNo, {
-                x: 50,
-                y: height - 2 * fontSize,
-                size: fontSize,
-                font: timesRomanFont,
-                color: rgb(0, 0, 0),
-              })
-        
-              page.drawText("ITEMS--------------RATE---QTY----AMT", {
-                x: 50,
-                y: height - 3.5 * fontSize,
-                size: fontSize,
-                font: timesRomanFont,
-                color: rgb(0, 0, 0),
-              })
 
+          
 
+h=7
         fontSize = 30
         console.log(billingData)
                
@@ -87,9 +87,18 @@ async function generateBill(billingData){
         for(let i=0;i<=billingData.items.length;i++){
             
             if(i==billingData.items.length){ // for last iteration total
+                
+                page.drawText("_________________________________", {
+                    x: 50,
+                    y: height-(i+h)*30 - 2 * fontSize,
+                    size: fontSize,
+                    font: timesRomanFont,
+                    color: rgb(0, 0, 0),
+                  })
+                
                 page.drawText("Total : "+billingData.total, {
                     x: 50,
-                    y: height-(i+.5)*80 - 4 * fontSize,
+                    y: height-(i+h)*35 - 2 * fontSize, // as (i+1) increases text moves down
                     size: fontSize,
                     font: timesRomanFont,
                     color: rgb(0, 0, 0),
@@ -97,9 +106,9 @@ async function generateBill(billingData){
             }else{
 
                 const {dish,rate,q,amount} = billingData.items[i]
-                page.drawText(dish+"-----"+rate+"-----"+q+"-----"+amount, {
+                page.drawText(`${"\n".repeat(i)}${dish}-----${rate}-----${q}-----${amount}`, {
                   x: 50,
-                  y: height-(i+.5)*80 - 4 * fontSize,
+                  y: height-(h)*30 - 2 * fontSize,
                   size: fontSize,
                   font: timesRomanFont,
                   color: rgb(0, 0.53, 0.71),
