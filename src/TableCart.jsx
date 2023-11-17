@@ -97,7 +97,7 @@ h=7
                     color: rgb(0, 0, 0),
                   })
                 
-                page.drawText(`${"\n".repeat(i*2)}                                         Total : ${billingData.total}`, {
+                page.drawText(`${"\n".repeat(i*2)}                                         Total : Rs.${billingData.total}/-`, {
                     x: 50,
                     y: height-(h)*35 - 2 * fontSize, 
                     size: fontSize,
