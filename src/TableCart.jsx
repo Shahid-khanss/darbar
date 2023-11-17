@@ -5,10 +5,12 @@ import { useSelector, useDispatch } from "react-redux"
 import { writeItem, deleteItem,total, checkOut, increase, decrease } from "./features/darbarSlice";
 import TableMenu from "./TableMenu";
 import { PDFDocument,StandardFonts, rgb } from "pdf-lib";
+import axios from "axios";
 
 function TableCart(props) {
-   
+    let billNo
     let pdfBase64Url
+    let pdfBase64
     let billingData={}
     const state = useSelector(state=>state.darbarReducer)
     // console.log(state)
@@ -30,15 +32,36 @@ async function handleCheckout(e,tableno){
     })
 
     // console.log(billingData)
-    pdfBase64Url=await generateBill(billingData)
+    const {pdfBase64Url,pdfBase64}=await generateBill(billingData)
+    // console.log(pdfBase64Url)
+    
+// for sending bill pdf to drive folder    
+    const data = await axios.post('https://script.google.com/macros/s/AKfycbxt38_mWjsD8H1bf6u9Gh7isB3yMOiQxavHlM6jlj3TEPNNa8MjW1eY6VYjiYkBo3Pq/exec', {base64 : pdfBase64, name :billNo, type : "application/pdf" }, {
+        headers: {
+            'Content-Type': "multipart/form-data"
+        }
+    })
+    
+///// For sending bill summary in spreadsheet
+    const billSummary = await axios.post('https://script.google.com/macros/s/AKfycbzTjyO7rbxFM8wNGGINLCJBMmqEtFoJsCk-xqXDIRwXPGTIqH9_LGpodC8_KFZKSvFShQ/exec', {billNo,total:billingData.total }, {
+        headers: {
+            'Content-Type': "multipart/form-data"
+        }
+    })
+
+
+    const output = billingData.data
+    console.log(output)
     console.log(pdfBase64Url)
     dispatch(checkOut({tableno}))
 }
 
+
+// bill generating pdf function
 async function generateBill(billingData){
     async function createPdf(billingData) {
         let currentdate = new Date(); 
-    let billNo =    
+    billNo =    
                 currentdate.getFullYear().toString()
                 + (currentdate.getMonth()+1).toString()
                 +currentdate.getDate().toString()
@@ -119,7 +142,9 @@ h=7
         
        
         // console.log("inside")
-         return await pdfDoc.saveAsBase64({dataUri : true})
+        pdfBase64Url= await pdfDoc.saveAsBase64({dataUri:true})
+        pdfBase64 = await pdfDoc.saveAsBase64()
+        return {pdfBase64Url,pdfBase64}
       }
       return await createPdf(billingData)
 }
