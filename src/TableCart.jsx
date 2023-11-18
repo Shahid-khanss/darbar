@@ -13,7 +13,7 @@ function TableCart(props) {
     let pdfBase64
     let billingData={}
 
-    // const [bill, setBill] = useState(false)
+    const [loader, setLoader] = useState(false)
     const state = useSelector(state=>state.darbarReducer)
     // console.log(state)
     
@@ -27,6 +27,7 @@ function handleDelete(e,tableno,index){
 
 async function handleCheckout(e,tableno){
     e.preventDefault()
+    setLoader(true)
     await state.forEach(table=>{
         if(table.tableno==tableno){
            billingData=table
@@ -38,18 +39,22 @@ async function handleCheckout(e,tableno){
     // console.log(pdfBase64Url)
     
 // for sending bill pdf to drive folder    
-    const data = await axios.post('https://script.google.com/macros/s/AKfycbxt38_mWjsD8H1bf6u9Gh7isB3yMOiQxavHlM6jlj3TEPNNa8MjW1eY6VYjiYkBo3Pq/exec', {base64 : pdfBase64, name :billNo, type : "application/pdf" }, {
-        headers: {
-            'Content-Type': "multipart/form-data"
-        }
-    })
+    // const data = await axios.post('https://script.google.com/macros/s/AKfycbxt38_mWjsD8H1bf6u9Gh7isB3yMOiQxavHlM6jlj3TEPNNa8MjW1eY6VYjiYkBo3Pq/exec', {base64 : pdfBase64, name :billNo, type : "application/pdf" }, {
+    //     headers: {
+    //         'Content-Type': "multipart/form-data"
+    //     }
+    // })
     
 ///// For sending bill summary in spreadsheet
-    const billSummary = await axios.post('https://script.google.com/macros/s/AKfycbzTjyO7rbxFM8wNGGINLCJBMmqEtFoJsCk-xqXDIRwXPGTIqH9_LGpodC8_KFZKSvFShQ/exec', {billNo,total:billingData.total }, {
-        headers: {
-            'Content-Type': "multipart/form-data"
-        }
-    })
+    // const billSummary = await axios.post('https://script.google.com/macros/s/AKfycbzTjyO7rbxFM8wNGGINLCJBMmqEtFoJsCk-xqXDIRwXPGTIqH9_LGpodC8_KFZKSvFShQ/exec', {billNo,total:billingData.total }, {
+    //     headers: {
+    //         'Content-Type': "multipart/form-data"
+    //     }
+    // })
+
+    setTimeout(()=>{
+
+   
 
 
     // const output = billingData.data
@@ -57,6 +62,8 @@ async function handleCheckout(e,tableno){
     console.log(pdfBase64Url)
     // await open(pdfBase64Url)
     dispatch(checkOut({tableno}))
+    setLoader(false)
+},3000)
 }
 
 
@@ -83,7 +90,7 @@ async function generateBill(billingData){
 
         let fontSize = 30
         let h = 1
-        console.log(billingData)
+        // console.log(billingData)
 
             h=1
             page.drawText(
@@ -108,7 +115,7 @@ ITEMS---------------------------RATE--------QTY-------AMT
 
 h=7
         fontSize = 30
-        console.log(billingData)
+        // console.log(billingData)
                
         
         for(let i=0;i<=billingData.items.length;i++){
@@ -226,13 +233,22 @@ delete_forever
                     
                     className="checkout-parent" key={index}>
                     <div className="total-row">Total : ₹ {table.total}/-</div>
-                    <div 
+                    
+                    
+                    {loader ? 
+                    <div className="checkout-row">
+                 <div className="loader"></div>
+                 </div>
+                :
+                 <div 
                     onClick={(e)=>{handleCheckout(e,table.tableno)}} 
                   
-                    className="checkout-row"><span className="material-symbols-outlined cart">
-shopping_cart_checkout
-</span></div>
-                    </div>
+                    className="checkout-row"><span className="material-symbols-outlined cart">shopping_cart_checkout</span></div>
+                
+                }
+
+                </div> // checkout row parent tag close
+                                        
                     )
                    }})
             }

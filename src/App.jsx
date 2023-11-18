@@ -42,7 +42,11 @@ const [menuList,setmenuList] = useState()
       />
       </>
     :
-    "Fetching Data"
+
+    <div className='loader-main-parent'>
+      <div>Fetching Menu</div>
+    <div className='loader-main'></div>
+    </div>
     }
 
       

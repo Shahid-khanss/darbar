@@ -3,7 +3,9 @@ body{
   border: 1px solid black;
   height: 730px;
   font-family: 'Roboto', sans-serif;
-
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
 }
 
 /* 
@@ -78,6 +80,88 @@ counter --------------------------------------------------->
 /* 
 counter end ----------------------------------------------------------->
 */
+
+
+/* 
+-------------------------------Loader Spinner----------------------------------->
+*/
+.loader {
+  border: 6px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 7px solid #3498db;
+  width: 20px;
+  height: 20px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 
+-------------------------------Loader Spinner End-------------------------------->
+*/
+
+
+/* 
+---------------------------------Loader main Page--------------------------------->
+*/
+
+.loader-main-parent{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+ font-size: 1.5em;
+  
+}
+
+
+.loader-main {
+  /* margin: auto;
+  align-items: center;
+  justify-content: center; */
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
+/* 
+-----------------------------------Loader main Page End----------------------------->
+*/
+
+
+
+
+
+
 .material-symbols-outlined {
   
   font-size: 1.5em;
@@ -301,7 +385,8 @@ img{
 } */
 
 .checkout-row{
-    /* display: inline-block; */
+    display: flex;
+    justify-content: center;
     border: 1px solid black;
     padding: 3px;
     /* margin-inline-end: auto; */
