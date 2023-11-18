@@ -39,31 +39,54 @@ async function handleCheckout(e,tableno){
     // console.log(pdfBase64Url)
     
 // for sending bill pdf to drive folder    
-    // const data = await axios.post('https://script.google.com/macros/s/AKfycbxt38_mWjsD8H1bf6u9Gh7isB3yMOiQxavHlM6jlj3TEPNNa8MjW1eY6VYjiYkBo3Pq/exec', {base64 : pdfBase64, name :billNo, type : "application/pdf" }, {
-    //     headers: {
-    //         'Content-Type': "multipart/form-data"
-    //     }
-    // })
+    const data = await axios.post('https://script.google.com/macros/s/AKfycbxt38_mWjsD8H1bf6u9Gh7isB3yMOiQxavHlM6jlj3TEPNNa8MjW1eY6VYjiYkBo3Pq/exec', {base64 : pdfBase64, name :billNo, type : "application/pdf" }, {
+        headers: {
+            'Content-Type': "multipart/form-data"
+        }
+    })
     
 ///// For sending bill summary in spreadsheet
-    // const billSummary = await axios.post('https://script.google.com/macros/s/AKfycbzTjyO7rbxFM8wNGGINLCJBMmqEtFoJsCk-xqXDIRwXPGTIqH9_LGpodC8_KFZKSvFShQ/exec', {billNo,total:billingData.total }, {
-    //     headers: {
-    //         'Content-Type': "multipart/form-data"
-    //     }
-    // })
+    const billSummary = await axios.post('https://script.google.com/macros/s/AKfycbzTjyO7rbxFM8wNGGINLCJBMmqEtFoJsCk-xqXDIRwXPGTIqH9_LGpodC8_KFZKSvFShQ/exec', {billNo,total:billingData.total }, {
+        headers: {
+            'Content-Type': "multipart/form-data"
+        }
+    })
 
-    setTimeout(()=>{
 
    
 
 
     // const output = billingData.data
     // console.log(output)
-    console.log(pdfBase64Url)
+    // console.log(pdfBase64Url)
     // await open(pdfBase64Url)
+    await downloadPdfBill(pdfBase64Url,billNo)
     dispatch(checkOut({tableno}))
+
+}
+
+
+// to download a file make and anchor tag 
+async function downloadPdfBill(url,fileName){
+    
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute(
+      'download',
+      fileName+".pdf",
+    );
+
+    // Append to html link element page
+    document.body.appendChild(link);
+
+    // Start download
+    link.click();
+
+    // Clean up and remove the link
+    link.parentNode.removeChild(link);
+
+
     setLoader(false)
-},3000)
 }
 
 
@@ -80,9 +103,10 @@ async function generateBill(billingData){
                 + currentdate.getSeconds().toString();
         
         
-        
+                // const pngImageBytes = await fetch("./assets/logo.png").then((res) => res.arrayBuffer())
         const pdfDoc = await PDFDocument.create()
         const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman)
+        // const pngImage = await pdfDoc.embedPng(pngImageBytes)
         const page = pdfDoc.addPage()
         const { width, height } = page.getSize()
         
@@ -93,6 +117,12 @@ async function generateBill(billingData){
         // console.log(billingData)
 
             h=1
+            // page.drawImage(pngImage, {
+            //     x: page.getWidth() / 2 - pngDims.width / 2 + 75,
+            //     y: page.getHeight() / 2 - pngDims.height + 250,
+            //     width: pngDims.width,
+            //     height: pngDims.height,
+            //   })
             page.drawText(
 `          
                                     SHAHI DARBAR
@@ -150,6 +180,13 @@ h=7
             }
         }
         
+        page.drawText(`#e-Bill #SavePaper---------------------------------Visit Again`, {
+            x: 50,
+            y: height-800, 
+            size: 20,
+            font: timesRomanFont,
+            color: rgb(0, 0, 0),
+          })
        
         // console.log("inside")
         pdfBase64Url= await pdfDoc.saveAsBase64({dataUri:true})
@@ -187,7 +224,10 @@ function handleIncrease(e,tableno,dishIndex){
                         {/* <div className="sno">{dish.dish}</div> */}
                         <div className="sno-row-header">N</div>
                         <div className="dish-row-header">ITEMS</div>
+                        <div className="rate-row-header">Rate</div>
+                        <div className="dish-row-header">Qty</div>
                         <div className="rate-row-header">₹</div>
+                        <div className="dish-row-header"></div>
             </div>
             
             {state.map(table=>{
