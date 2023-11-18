@@ -35,7 +35,7 @@ const [menuList,setmenuList] = useState()
     {menuList
     ?
     <>
-    <img src="src\assets\logo.png" alt="" />
+    <img src="\logo.png" alt="" />
       <Darbar
       menuList = {menuList}
       
