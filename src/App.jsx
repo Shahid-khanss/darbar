@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
+import darbarLogo from './assets/logo.png'
 import axios from 'axios'
 // import { sheetDatabase } from './features/menuSlice'
 import { useSelector, useDispatch } from "react-redux"
@@ -12,6 +13,7 @@ import Darbar from './Darbar'
 
 function App() {
 
+  const [remoteSave, setRemoteSave] = useState(true)
 // const menuState = useSelector(state=>state.menuReducer)
 
 // const dispatch = useDispatch()
@@ -34,11 +36,18 @@ const [menuList,setmenuList] = useState()
 
     {menuList
     ?
-    <>
-    <img src="\logo.png" alt="" />
+    <> 
+    <div onClick={()=>{ // toggle between server save or not
+      setRemoteSave(prev=>{
+        return !prev
+      })
+    }} 
+    
+    className={remoteSave?"remote-save-green" : "remote-save-red"}></div>
+    <img src={darbarLogo} alt="" />
       <Darbar
       menuList = {menuList}
-      
+      remoteSave={remoteSave}
       />
       </>
     :

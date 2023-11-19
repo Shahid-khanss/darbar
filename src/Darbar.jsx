@@ -41,6 +41,7 @@ return (
         <div><TableCart
                 clicked={clicked}
                 menuList={props.menuList}
+                remoteSave={props.remoteSave}
 
         />
         </div>   

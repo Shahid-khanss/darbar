@@ -6,6 +6,7 @@ import { writeItem, deleteItem,total, checkOut, increase, decrease } from "./fea
 import TableMenu from "./TableMenu";
 import { PDFDocument,StandardFonts, rgb } from "pdf-lib";
 import axios from "axios";
+import logo from "./assets/logo.png"
 
 function TableCart(props) {
     let billNo
@@ -39,18 +40,22 @@ async function handleCheckout(e,tableno){
     // console.log(pdfBase64Url)
     
 // for sending bill pdf to drive folder    
-    const data = await axios.post('https://script.google.com/macros/s/AKfycbxt38_mWjsD8H1bf6u9Gh7isB3yMOiQxavHlM6jlj3TEPNNa8MjW1eY6VYjiYkBo3Pq/exec', {base64 : pdfBase64, name :billNo, type : "application/pdf" }, {
-        headers: {
-            'Content-Type': "multipart/form-data"
-        }
-    })
-    
-///// For sending bill summary in spreadsheet
-    const billSummary = await axios.post('https://script.google.com/macros/s/AKfycbzTjyO7rbxFM8wNGGINLCJBMmqEtFoJsCk-xqXDIRwXPGTIqH9_LGpodC8_KFZKSvFShQ/exec', {billNo,total:billingData.total }, {
-        headers: {
-            'Content-Type': "multipart/form-data"
-        }
-    })
+    if(props.remoteSave){
+        
+        const data = await axios.post('https://script.google.com/macros/s/AKfycbxt38_mWjsD8H1bf6u9Gh7isB3yMOiQxavHlM6jlj3TEPNNa8MjW1eY6VYjiYkBo3Pq/exec', {base64 : pdfBase64, name :billNo, type : "application/pdf" }, {
+            headers: {
+                'Content-Type': "multipart/form-data"
+            }
+        })
+        
+    ///// For sending bill summary in spreadsheet
+        const billSummary = await axios.post('https://script.google.com/macros/s/AKfycbzTjyO7rbxFM8wNGGINLCJBMmqEtFoJsCk-xqXDIRwXPGTIqH9_LGpodC8_KFZKSvFShQ/exec', {billNo,total:billingData.total }, {
+            headers: {
+                'Content-Type': "multipart/form-data"
+            }
+        })
+    }
+
 
 
    
@@ -103,32 +108,33 @@ async function generateBill(billingData){
                 + currentdate.getSeconds().toString();
         
         
-                // const pngImageBytes = await fetch("./assets/logo.png").then((res) => res.arrayBuffer())
+                const pngImageBytes = await fetch(logo).then((res) => res.arrayBuffer())
         const pdfDoc = await PDFDocument.create()
         const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman)
-        // const pngImage = await pdfDoc.embedPng(pngImageBytes)
+        const pngImage = await pdfDoc.embedPng(pngImageBytes)
         const page = pdfDoc.addPage()
         const { width, height } = page.getSize()
-        
+        const pngDims = pngImage.scale(0.3)
         // y : height (total height of page) - 2 * fontsize (it signifies line width from next line)
 
         let fontSize = 30
         let h = 1
         // console.log(billingData)
 
-            h=1
-            // page.drawImage(pngImage, {
-            //     x: page.getWidth() / 2 - pngDims.width / 2 + 75,
-            //     y: page.getHeight() / 2 - pngDims.height + 250,
-            //     width: pngDims.width,
-            //     height: pngDims.height,
-            //   })
-            page.drawText(
-`          
-                                    SHAHI DARBAR
+        page.drawImage(pngImage, {
+            x: page.getWidth() / 2 - pngDims.width*1.5 / 2 + 75,
+            y: page.getHeight() / 2 - pngDims.height*.001 + 250,
+            width: pngDims.width,
+            height: pngDims.height,
+        })
+        h=3
+        page.drawText(
+            `          
+            
+
+
 
 Bill No. : ${billNo}              Date : ${currentdate.getDate()}-${currentdate.getMonth()+1}-${currentdate.getFullYear()}
-
 
 ITEMS---------------------------RATE--------QTY-------AMT
 -----------------------------------------------------------------------
@@ -143,7 +149,7 @@ ITEMS---------------------------RATE--------QTY-------AMT
 
           
 
-h=7
+h=9
         fontSize = 30
         // console.log(billingData)
                
@@ -152,7 +158,7 @@ h=7
             
             if(i==billingData.items.length){ 
                 
-                page.drawText(`${"\n".repeat(i*2)}-----------------------------------------------`, {
+                page.drawText(`${"\n".repeat(i)}-----------------------------------------------`, {
                     x: 50,
                     y: height-(h)*30 - 2 * fontSize,
                     size: fontSize,
@@ -160,7 +166,7 @@ h=7
                     color: rgb(0, 0, 0),
                   })
                 
-                page.drawText(`${"\n".repeat(i*2)}                                         Total : Rs.${billingData.total}/-`, {
+                page.drawText(`${"\n".repeat(i)}                                         Total : Rs.${billingData.total}/-`, {
                     x: 50,
                     y: height-(h)*35 - 2 * fontSize, 
                     size: fontSize,
@@ -170,7 +176,7 @@ h=7
             }else{
 
                 const {dish,rate,q,amount} = billingData.items[i]
-                page.drawText(`${"\n".repeat(i*2)}${dish}-----${rate}-----${q}-----${amount}`, {
+                page.drawText(`${"\n".repeat(i)}${dish}-----${rate}-----${q}-----${amount}`, {
                   x: 50,
                   y: height-(h)*30 - 2 * fontSize,
                   size: fontSize,
